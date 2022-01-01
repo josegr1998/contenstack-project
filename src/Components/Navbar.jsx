@@ -18,7 +18,13 @@ const Navbar = ({ data }) => {
             >
               <li className='list-item'>{data.link_2}</li>
             </Link>
-            <li className='list-item'>{data.link_3}</li>
+            <Link
+              to={"/about"}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <li className='list-item'>{data.link_3}</li>
+            </Link>
+
             <li className='list-item' style={{ marginRight: "1rem" }}>
               {data.link_4}
             </li>

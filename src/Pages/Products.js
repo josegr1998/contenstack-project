@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Contentstack from "contentstack";
 import styled from "styled-components";
 import Filters from "../Components/Filters";
 import SingleProduct from "../Components/SingleProduct";
 import { useAppContext } from "../Context/Context";
-
-const Stack = Contentstack.Stack({
-  api_key: "blt380c14e4c6d23425",
-  delivery_token: "cs1e03691a7eb82361a53a5f28",
-  environment: "production",
-});
+import Stack from "../Client/Client";
 
 const Products = () => {
   const [products, setProducts] = useState([]);

@@ -5,12 +5,8 @@ import Navbar from "./Components/Navbar";
 import Homepage from "./Pages/Homepage";
 import ProductDetails from "./Pages/ProductDetails";
 import Products from "./Pages/Products";
-
-const Stack = Contentstack.Stack({
-  api_key: "blt380c14e4c6d23425",
-  delivery_token: "cs1e03691a7eb82361a53a5f28",
-  environment: "production",
-});
+import Stack from "./Client/Client";
+import About from "./Pages/About";
 
 function App() {
   const Query = Stack.ContentType("homepage").Query();
@@ -19,7 +15,6 @@ function App() {
   const [language, setLanguage] = useState("en-us");
 
   useEffect(() => {
-    console.log("i go in here");
     Query.toJSON()
       .language(language)
       .find()
@@ -94,6 +89,7 @@ function App() {
               exact
               element={<ProductDetails />}
             ></Route>
+            <Route path='/about' exact element={<About />}></Route>
           </Routes>
         </Router>
       </div>

@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const RelatedProducts = ({ relatedProducts }) => {
+  const moveTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Wrapper>
       <h1 className='section-title'>Related Products</h1>
@@ -10,6 +14,7 @@ const RelatedProducts = ({ relatedProducts }) => {
         {relatedProducts.map((product) => {
           return (
             <Link
+              onClick={moveTop}
               to={`/products/${product.uid}`}
               style={{
                 textDecoration: "none",

@@ -4,12 +4,7 @@ import Contentstack from "contentstack";
 import styled from "styled-components";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import RelatedProducts from "../Components/RelatedProducts";
-
-const Stack = Contentstack.Stack({
-  api_key: "blt380c14e4c6d23425",
-  delivery_token: "cs1e03691a7eb82361a53a5f28",
-  environment: "production",
-});
+import Stack from "../Client/Client";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState("");
@@ -46,9 +41,6 @@ const ProductDetails = () => {
       });
     }
   }, [product]);
-
-  console.log("im the product", product);
-  console.log("im the related products", relatedProducts);
 
   if (product) {
     return (

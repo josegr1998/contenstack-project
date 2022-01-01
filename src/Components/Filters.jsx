@@ -39,25 +39,34 @@ const Filters = () => {
             onChange={handleChange}
             placeholder='Search...'
           />
-          <input
-            type='text'
-            placeholder='min-price'
-            name='min-price'
-            onChange={handleChange}
-          />
-          <input
-            type='text'
-            placeholder='max-price'
-            name='max-price'
-            onChange={handleChange}
-          />
-          <p>Free Shipping</p>
-          <input
-            type='checkbox'
-            name='free-shiping'
-            className='check'
-            onChange={handleChange}
-          />
+          <div className='price-filters'>
+            <p className='price-filter'>Price</p>
+            <div className='price-inputs-container'>
+              <input
+                type='text'
+                placeholder='min'
+                name='min-price'
+                className='price'
+                onChange={handleChange}
+              />
+              <input
+                type='text'
+                placeholder='max'
+                name='max-price'
+                className='price'
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className='free-shiping-container'>
+            <p className='price-filter'>Free Shipping</p>
+            <input
+              type='checkbox'
+              name='free-shiping'
+              className='check'
+              onChange={handleChange}
+            />
+          </div>
         </form>
       </div>
     </Wrapper>
@@ -72,9 +81,36 @@ const Wrapper = styled.div`
   .search-bar {
     padding: 0.25rem;
     width: 90%;
+    margin-bottom: 1rem;
+    display: block;
   }
   .check {
     display: block;
+  }
+  .price {
+    margin-bottom: 1rem;
+    width: 3rem;
+    height: 2rem;
+  }
+  .price-filters {
+    display: block;
+  }
+  .price-filter {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .price-inputs-container {
+    display: flex;
+    gap: 1rem;
+  }
+  .check {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .free-shiping-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
   }
 `;
 

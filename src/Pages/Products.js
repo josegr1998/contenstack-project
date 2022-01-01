@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Contentstack from "contentstack";
 import styled from "styled-components";
-import Filters from "./Filters";
-import SingleProduct from "./SingleProduct";
+import Filters from "../Components/Filters";
+import SingleProduct from "../Components/SingleProduct";
+import { useAppContext } from "../Context/Context";
 
 const Stack = Contentstack.Stack({
   api_key: "blt380c14e4c6d23425",
@@ -12,12 +13,16 @@ const Stack = Contentstack.Stack({
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const { setAllProducts, filteredProducts } = useAppContext();
 
   useEffect(() => {
     const Query = Stack.ContentType("ui_product").Query();
     Query.toJSON()
       .find()
-      .then((res) => setProducts(res[0]));
+      .then((res) => {
+        setProducts(res[0]);
+        setAllProducts(res[0]);
+      });
   }, []);
 
   console.log("products details page", products);
@@ -29,8 +34,8 @@ const Products = () => {
           <Filters />
         </div>
         <div className='products-container'>
-          {products.length > 0 &&
-            products.map((product) => {
+          {filteredProducts.length > 0 &&
+            filteredProducts.map((product) => {
               return <SingleProduct product={product} />;
             })}
         </div>

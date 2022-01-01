@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import Contentstack from "contentstack";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Homepage from "./Components/Homepage";
-import ProductDetails from "./Components/ProductDetails";
-import Products from "./Components/Products";
+import Homepage from "./Pages/Homepage";
+import ProductDetails from "./Pages/ProductDetails";
+import Products from "./Pages/Products";
 
 const Stack = Contentstack.Stack({
   api_key: "blt380c14e4c6d23425",

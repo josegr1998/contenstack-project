@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Contentstack from "contentstack";
 import styled from "styled-components";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import RelatedProducts from "./RelatedProducts";
+import RelatedProducts from "../Components/RelatedProducts";
 
 const Stack = Contentstack.Stack({
   api_key: "blt380c14e4c6d23425",

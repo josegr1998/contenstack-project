@@ -1,6 +1,6 @@
 import React from "react";
-import FeaturedProducts from "./FeaturedProducts";
-import Hero from "./Hero";
+import FeaturedProducts from "../Components/FeaturedProducts";
+import Hero from "../Components/Hero";
 
 const Homepage = ({ data, featuredProducts }) => {
   return (

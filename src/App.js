@@ -1,12 +1,10 @@
-import logo from "./logo.svg";
-import "./App.css";
 import { useEffect, useState } from "react";
 import Contentstack from "contentstack";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
-import Hero from "./Components/Hero";
 import Homepage from "./Components/Homepage";
 import ProductDetails from "./Components/ProductDetails";
+import Products from "./Components/Products";
 
 const Stack = Contentstack.Stack({
   api_key: "blt380c14e4c6d23425",
@@ -90,6 +88,7 @@ function App() {
                 }
               ></Route>
             )}
+            <Route path={"/products"} exact element={<Products />}></Route>
             <Route
               path={"/products/:id"}
               exact

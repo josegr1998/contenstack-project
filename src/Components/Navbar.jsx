@@ -12,8 +12,12 @@ const Navbar = ({ data }) => {
             <Link to={"/"} style={{ textDecoration: "none", color: "black" }}>
               <li className='list-item'>{data.link_1}</li>
             </Link>
-
-            <li className='list-item'>{data.link_2}</li>
+            <Link
+              to={"/products"}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <li className='list-item'>{data.link_2}</li>
+            </Link>
             <li className='list-item'>{data.link_3}</li>
             <li className='list-item' style={{ marginRight: "1rem" }}>
               {data.link_4}

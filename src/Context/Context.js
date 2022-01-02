@@ -9,6 +9,8 @@ const initialState = {
   maxPrice: 0,
   cart: [],
   isCartOpen: false,
+  totalAmount: 0,
+  totalItems: 0,
 };
 
 export const AppContextProvider = ({ children }) => {
@@ -49,6 +51,18 @@ export const AppContextProvider = ({ children }) => {
     dispatch({ type: "OPEN_CART" });
   };
 
+  const deleteCartItem = (id) => {
+    dispatch({ type: "DELETE_CART_ITEM", payload: id });
+  };
+
+  const toggleAmount = (id, type) => {
+    dispatch({ type: "TOGGLE_AMOUNT", payload: { id, type } });
+  };
+
+  const getTotal = () => {
+    dispatch({ type: "GET_TOTAL" });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -60,6 +74,9 @@ export const AppContextProvider = ({ children }) => {
         addToCart,
         closeCart,
         openCart,
+        deleteCartItem,
+        toggleAmount,
+        getTotal,
       }}
     >
       {children}

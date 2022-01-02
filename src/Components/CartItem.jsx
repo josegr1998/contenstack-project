@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { useAppContext } from "../Context/Context";
 
 const CartItem = ({ product }) => {
-  console.log("im the cart product", product);
+  const { deleteCartItem, toggleAmount } = useAppContext();
+
   return (
     <Wrapper>
       <div className='cart-item-container'>
@@ -11,15 +13,27 @@ const CartItem = ({ product }) => {
           <img src={product.product_image.url} alt='' />
         </div>
         <div className='cart-item-info'>
-          <h4 className='title'>{product.product_title}</h4>
+          <h4 className='title'>{product.product_title.slice(0, 40)}</h4>
           <p>$ {product.price}</p>
         </div>
         <div className='amount-container'>
-          <AiOutlineMinus />
+          <AiOutlineMinus
+            className='amount-btn'
+            onClick={() => toggleAmount(product.uid, "dec")}
+          />
           <p>{product.amount}</p>
-          <AiOutlinePlus />
+          <AiOutlinePlus
+            className='amount-btn'
+            onClick={() => toggleAmount(product.uid, "inc")}
+          />
         </div>
       </div>
+      <button
+        className='delete-btn'
+        onClick={() => deleteCartItem(product.uid)}
+      >
+        Delete
+      </button>
     </Wrapper>
   );
 };
@@ -45,6 +59,20 @@ const Wrapper = styled.article`
     display: flex;
     align-items: center;
     gap: 1rem;
+  }
+  .delete-btn {
+    width: 10rem;
+    background: transparent;
+    border: 1px solid black;
+    transition: all 0.3s linear;
+  }
+  .delete-btn:hover {
+    color: white;
+    background: black;
+    cursor: pointer;
+  }
+  .amount-btn {
+    cursor: pointer;
   }
 `;
 

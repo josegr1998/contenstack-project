@@ -5,13 +5,16 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAppContext } from "../Context/Context";
 
 const Navbar = ({ data }) => {
-  const { openCart } = useAppContext();
+  const { openCart, totalItems } = useAppContext();
   return (
     <Wrapper>
       <nav className='nav-container'>
         <div className='header'>
           <h2 className='nav-title'>{data.title}</h2>
-          <AiOutlineShoppingCart className='cart-icon' onClick={openCart} />
+          <div className='cart-icon-container'>
+            <AiOutlineShoppingCart className='cart-icon' onClick={openCart} />
+            <p>{totalItems}</p>
+          </div>
         </div>
 
         <div className='navbar-links-container'>
@@ -69,8 +72,25 @@ const Wrapper = styled.nav`
     gap: 2rem;
   }
   .cart-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
+  }
+  .cart-icon-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    p {
+      position: absolute;
+      bottom: 1px;
+      right: -5px;
+      background: black;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
   }
 `;
 

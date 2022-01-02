@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useAppContext } from "../Context/Context";
 import CartItem from "./CartItem";
@@ -7,7 +7,12 @@ import { Link } from "react-router-dom";
 
 const Cart = ({ data }) => {
   console.log("im the cart data", data);
-  const { cart, closeCart, isCartOpen } = useAppContext();
+  const { cart, closeCart, isCartOpen, getTotal, totalAmount } =
+    useAppContext();
+
+  useEffect(() => {
+    getTotal();
+  }, [isCartOpen, cart]);
 
   return (
     <Wrapper>
@@ -29,7 +34,8 @@ const Cart = ({ data }) => {
                 </>
               );
             })}
-            <h2>Total to pay</h2>
+            <h2 className='total'>Total to pay ${totalAmount}</h2>
+            <button className='btn'>Checkout</button>
           </>
         ) : (
           <div className='empty-container'>
@@ -45,6 +51,9 @@ const Cart = ({ data }) => {
 };
 
 const Wrapper = styled.section`
+  .total {
+    padding: 1rem;
+  }
   .icon {
     cursor: pointer;
   }
@@ -80,24 +89,25 @@ const Wrapper = styled.section`
       text-align: center;
       margin-bottom: 2rem;
     }
-    .btn {
-      font-size: 1.2rem;
-      text-decoration: none;
-      color: black;
-      cursor: pointer;
-      border: 1px solid black;
-      padding: 0.25rem;
-      width: 7rem;
-      margin: 0 auto;
-      display: block;
-      text-align: center;
-      border-radius: 1rem;
-      transition: all 0.3s linear;
-    }
-    .btn:hover {
-      background: black;
-      color: white;
-    }
+  }
+  .btn {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 0.25rem;
+    width: 7rem;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    border-radius: 1rem;
+    transition: all 0.3s linear;
+    background: transparent;
+  }
+  .btn:hover {
+    background: black;
+    color: white;
   }
 `;
 

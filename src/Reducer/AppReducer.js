@@ -88,11 +88,69 @@ export const reducer = (state, action) => {
     } else {
       const newItem = state.allProducts.find((item) => {
         if (item.uid === action.payload) {
+          item.amount = 1;
           return item;
         }
       });
       return { ...state, cart: [...state.cart, newItem] };
     }
+  }
+
+  if (action.type === "DELETE_CART_ITEM") {
+    return {
+      ...state,
+      cart: state.cart.filter((item) => {
+        if (item.uid !== action.payload) {
+          return item;
+        }
+      }),
+    };
+  }
+
+  if (action.type === "TOGGLE_AMOUNT") {
+    return {
+      ...state,
+      cart: state.cart
+        .map((item) => {
+          if (item.uid === action.payload.id) {
+            if (action.payload.type === "inc") {
+              item.amount++;
+            } else {
+              item.amount--;
+            }
+            return item;
+          } else {
+            return item;
+          }
+        })
+        .filter((item) => {
+          if (item.amount > 0) {
+            return item;
+          }
+        }),
+    };
+  }
+
+  if (action.type === "GET_TOTAL") {
+    const totals = state.cart.reduce(
+      (total, item) => {
+        const { price, amount } = item;
+        total.totalAmount += price * amount;
+        total.totalItems += amount;
+
+        return total;
+      },
+
+      {
+        totalAmount: 0,
+        totalItems: 0,
+      }
+    );
+    return {
+      ...state,
+      totalAmount: totals.totalAmount,
+      totalItems: totals.totalItems,
+    };
   }
   return { ...state };
 };

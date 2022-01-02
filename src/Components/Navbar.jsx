@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useAppContext } from "../Context/Context";
 
 const Navbar = ({ data }) => {
+  const { openCart } = useAppContext();
   return (
     <Wrapper>
       <nav className='nav-container'>
-        <h2 className='nav-title'>{data.title}</h2>
+        <div className='header'>
+          <h2 className='nav-title'>{data.title}</h2>
+          <AiOutlineShoppingCart className='cart-icon' onClick={openCart} />
+        </div>
+
         <div className='navbar-links-container'>
           <ul className='list'>
             <Link to={"/"} style={{ textDecoration: "none", color: "black" }}>
@@ -22,12 +29,10 @@ const Navbar = ({ data }) => {
               to={"/about"}
               style={{ textDecoration: "none", color: "black" }}
             >
-              <li className='list-item'>{data.link_3}</li>
+              <li className='list-item' style={{ marginRight: "1rem" }}>
+                {data.link_3}
+              </li>
             </Link>
-
-            <li className='list-item' style={{ marginRight: "1rem" }}>
-              {data.link_4}
-            </li>
           </ul>
         </div>
       </nav>
@@ -56,6 +61,15 @@ const Wrapper = styled.nav`
   }
   .list-item:hover {
     color: white;
+    cursor: pointer;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .cart-icon {
+    font-size: 1.5rem;
     cursor: pointer;
   }
 `;

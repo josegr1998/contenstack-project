@@ -7,6 +7,8 @@ const initialState = {
   allProducts: [],
   filteredProducts: [],
   maxPrice: 0,
+  cart: [],
+  isCartOpen: false,
 };
 
 export const AppContextProvider = ({ children }) => {
@@ -34,6 +36,19 @@ export const AppContextProvider = ({ children }) => {
     dispatch({ type: "SET_ALL_PRODUCTS", payload: products });
   };
 
+  const addToCart = (productID) => {
+    console.log(productID);
+    dispatch({ type: "ADD_TO_CART", payload: productID });
+  };
+
+  const closeCart = () => {
+    dispatch({ type: "CLOSE_CART" });
+  };
+
+  const openCart = () => {
+    dispatch({ type: "OPEN_CART" });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -42,6 +57,9 @@ export const AppContextProvider = ({ children }) => {
         searchProducts,
         setPrice,
         freeShiping,
+        addToCart,
+        closeCart,
+        openCart,
       }}
     >
       {children}

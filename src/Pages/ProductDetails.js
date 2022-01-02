@@ -5,10 +5,12 @@ import styled from "styled-components";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import RelatedProducts from "../Components/RelatedProducts";
 import Stack from "../Client/Client";
+import { useAppContext } from "../Context/Context";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const { addToCart, openCart } = useAppContext();
 
   const params = useParams();
   const id = params.id;
@@ -68,7 +70,15 @@ const ProductDetails = () => {
             </p>
             <p className='rating'>Ratings: {product.rating}/5</p>
           </div>
-          <button className='btn buy-btn'>Buy</button>
+          <button
+            className='btn buy-btn'
+            onClick={() => {
+              addToCart(product.uid);
+              openCart();
+            }}
+          >
+            Add to cart
+          </button>
         </div>
         <section className='related-products'>
           <RelatedProducts relatedProducts={relatedProducts} />

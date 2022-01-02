@@ -6,20 +6,7 @@ import { useAppContext } from "../Context/Context";
 import Stack from "../Client/Client";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const { setAllProducts, filteredProducts } = useAppContext();
-
-  useEffect(() => {
-    const Query = Stack.ContentType("ui_product").Query();
-    Query.toJSON()
-      .find()
-      .then((res) => {
-        setProducts(res[0]);
-        setAllProducts(res[0]);
-      });
-  }, []);
-
-  console.log("products details page", products);
+  const { filteredProducts } = useAppContext();
 
   return (
     <Wrapper>
@@ -28,10 +15,13 @@ const Products = () => {
           <Filters />
         </div>
         <div className='products-container'>
-          {filteredProducts.length > 0 &&
+          {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => {
               return <SingleProduct product={product} />;
-            })}
+            })
+          ) : (
+            <h1>Sorry, no products found...</h1>
+          )}
         </div>
       </div>
     </Wrapper>
@@ -42,7 +32,7 @@ const Wrapper = styled.section`
   background: #fedc97;
   padding-top: 2rem;
   padding-bottom: 2rem;
-
+  min-height: calc(100vh - 4rem);
   .section-container {
     max-width: 1170px;
     margin: 0 auto;

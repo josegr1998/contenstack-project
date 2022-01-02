@@ -59,5 +59,40 @@ export const reducer = (state, action) => {
         : state.allProducts,
     };
   }
+
+  if (action.type === "CLOSE_CART") {
+    return { ...state, isCartOpen: false };
+  }
+
+  if (action.type === "OPEN_CART") {
+    return { ...state, isCartOpen: true };
+  }
+  if (action.type === "ADD_TO_CART") {
+    const tempItem = state.cart.find((item) => {
+      if (item.uid === action.payload) {
+        return item;
+      }
+    });
+
+    if (tempItem) {
+      const newCart = state.cart.map((item) => {
+        if (tempItem.uid === item.uid) {
+          item.amount++;
+          return item;
+        } else {
+          return item;
+        }
+      });
+
+      return { ...state, cart: newCart };
+    } else {
+      const newItem = state.allProducts.find((item) => {
+        if (item.uid === action.payload) {
+          return item;
+        }
+      });
+      return { ...state, cart: [...state.cart, newItem] };
+    }
+  }
   return { ...state };
 };

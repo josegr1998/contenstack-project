@@ -9,6 +9,7 @@ import Stack from "./Client/Client";
 import About from "./Pages/About";
 import { useAppContext } from "./Context/Context";
 import Cart from "./Components/Cart";
+import Footer from "./Components/Footer";
 
 function App() {
   const Query = Stack.ContentType("homepage").Query();
@@ -40,6 +41,9 @@ function App() {
         }
         if (item.cart) {
           return item.cart.cart[0];
+        }
+        if (item.footer) {
+          return item.footer.footer[0];
         }
       });
 
@@ -76,6 +80,8 @@ function App() {
       });
   }, []);
 
+  console.log(pageInfo);
+
   if (pageInfo.length > 0) {
     return (
       <div>
@@ -104,6 +110,7 @@ function App() {
             ></Route>
             <Route path='/about' exact element={<About />}></Route>
           </Routes>
+          {pageInfo.length > 4 && <Footer data={pageInfo[4]} />}
         </Router>
       </div>
     );

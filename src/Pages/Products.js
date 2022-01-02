@@ -31,8 +31,9 @@ const Products = () => {
 const Wrapper = styled.section`
   background: #fedc97;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
   min-height: calc(100vh - 4rem);
+
   .section-container {
     max-width: 1170px;
     margin: 0 auto;

@@ -56,6 +56,11 @@ const Wrapper = styled.section`
   }
   .icon {
     cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.3s linear;
+  }
+  .icon:hover {
+    color: red;
   }
   .cart-header {
     display: flex;

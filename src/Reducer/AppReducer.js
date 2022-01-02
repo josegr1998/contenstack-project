@@ -60,6 +60,21 @@ export const reducer = (state, action) => {
     };
   }
 
+  if (action.type === "CATEGORY_FILTER") {
+    return {
+      ...state,
+      filteredProducts:
+        action.payload !== "all"
+          ? state.allProducts.filter((item) => {
+              if (item.tags.includes(action.payload)) {
+                return item;
+              }
+            })
+          : state.allProducts,
+      selectedTag: action.payload,
+    };
+  }
+
   if (action.type === "CLOSE_CART") {
     return { ...state, isCartOpen: false };
   }

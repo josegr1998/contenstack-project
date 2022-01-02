@@ -11,6 +11,7 @@ const initialState = {
   isCartOpen: false,
   totalAmount: 0,
   totalItems: 0,
+  selectedTag: "all",
 };
 
 export const AppContextProvider = ({ children }) => {
@@ -63,6 +64,10 @@ export const AppContextProvider = ({ children }) => {
     dispatch({ type: "GET_TOTAL" });
   };
 
+  const changeCategory = (value) => {
+    dispatch({ type: "CATEGORY_FILTER", payload: value });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -77,6 +82,7 @@ export const AppContextProvider = ({ children }) => {
         deleteCartItem,
         toggleAmount,
         getTotal,
+        changeCategory,
       }}
     >
       {children}

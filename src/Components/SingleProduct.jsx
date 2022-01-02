@@ -50,6 +50,7 @@ const Wrapper = styled.article`
   }
   .product-title {
     color: black;
+    text-transform: capitalize;
   }
   .title {
     text-align: center;

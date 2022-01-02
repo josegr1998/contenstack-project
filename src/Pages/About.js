@@ -41,6 +41,7 @@ const About = () => {
 };
 
 const Wrapper = styled.section`
+  min-height: calc(100vh - 9rem);
   .section-title {
     margin-bottom: 2rem;
     text-align: center;

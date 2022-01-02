@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useAppContext } from "../Context/Context";
 
 const Filters = () => {
-  const { searchProducts, setPrice, maxPrice, freeShiping } = useAppContext();
+  const {
+    searchProducts,
+    setPrice,
+    maxPrice,
+    freeShiping,
+    changeCategory,
+    selectedTag,
+  } = useAppContext();
 
   const handleChange = (e) => {
     if (e.target.name === "search") {
@@ -24,6 +31,9 @@ const Filters = () => {
     }
     if (e.target.name === "free-shiping") {
       freeShiping(e.target.checked);
+    }
+    if (e.target.name === "category") {
+      changeCategory(e.target.value);
     }
   };
 
@@ -58,6 +68,20 @@ const Filters = () => {
               />
             </div>
           </div>
+          <div className='category-container'>
+            <h2>Category</h2>
+            <select
+              name='category'
+              id=''
+              onChange={handleChange}
+              value={selectedTag}
+            >
+              <option value='all'>All</option>
+              <option value='table'>Table</option>
+              <option value='couch'>Couch</option>
+              <option value='chair'>Chair</option>
+            </select>
+          </div>
           <div className='free-shiping-container'>
             <p className='price-filter'>Free Shipping</p>
             <input
@@ -91,6 +115,7 @@ const Wrapper = styled.div`
     margin-bottom: 1rem;
     width: 3rem;
     height: 2rem;
+    border: transparent;
   }
   .price-filters {
     display: block;

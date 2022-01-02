@@ -82,6 +82,9 @@ const Wrapper = styled.section`
   padding-top: 2rem;
   padding-bottom: 2rem;
 
+  .title {
+    text-transform: capitalize;
+  }
   img {
     width: 100%;
     height: 100%;

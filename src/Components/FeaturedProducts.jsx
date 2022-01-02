@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Contentstack from "contentstack";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../Context/Context";
 
 const Stack = Contentstack.Stack({
   api_key: "blt380c14e4c6d23425",
@@ -11,6 +12,7 @@ const Stack = Contentstack.Stack({
 
 const FeaturedProducts = ({ featuredProducts }) => {
   const [products, setProducts] = useState([]);
+  const { language } = useAppContext();
 
   useEffect(() => {
     const Query = Stack.ContentType("ui_product").Query();
@@ -23,6 +25,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
 
     id.forEach((id) => {
       Query.where("uid", id)
+        .language(language)
         .toJSON()
         .find()
         .then((res) => {

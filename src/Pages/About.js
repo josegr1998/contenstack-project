@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Stack from "../Client/Client";
 import styled from "styled-components";
+import { useAppContext } from "../Context/Context";
 
 const About = () => {
   const Query = Stack.ContentType("about").Query();
   const [pageData, setPageData] = useState("");
+  const { language } = useAppContext();
 
   useEffect(() => {
     Query.toJSON()
+      .language(language)
       .find()
       .then((res) => {
         setPageData(res[0][0]);

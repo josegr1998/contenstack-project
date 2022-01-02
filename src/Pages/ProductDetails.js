@@ -10,7 +10,7 @@ import { useAppContext } from "../Context/Context";
 const ProductDetails = () => {
   const [product, setProduct] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const { addToCart, openCart } = useAppContext();
+  const { addToCart, openCart, language } = useAppContext();
 
   const params = useParams();
   const id = params.id;
@@ -18,6 +18,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const Query = Stack.ContentType("ui_product").Query();
     Query.where("uid", id)
+      .language(language)
       .toJSON()
       .find()
       .then((res) => setProduct(res[0][0]));
@@ -32,6 +33,7 @@ const ProductDetails = () => {
 
       id.forEach((id) => {
         RelatedQuery.where("uid", id)
+          .language(language)
           .toJSON()
           .find()
           .then((res) => {

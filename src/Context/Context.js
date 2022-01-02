@@ -12,10 +12,15 @@ const initialState = {
   totalAmount: 0,
   totalItems: 0,
   selectedTag: "all",
+  language: "en-us",
 };
 
 export const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const changeLanguage = (value) => {
+    dispatch({ type: "CHANGE_LANGUAGE", payload: value });
+  };
 
   const searchProducts = (value) => {
     dispatch({ type: "SEARCH_PRODUCTS", payload: value });
@@ -83,6 +88,7 @@ export const AppContextProvider = ({ children }) => {
         toggleAmount,
         getTotal,
         changeCategory,
+        changeLanguage,
       }}
     >
       {children}

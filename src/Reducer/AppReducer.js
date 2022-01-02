@@ -1,4 +1,7 @@
 export const reducer = (state, action) => {
+  if (action.type === "CHANGE_LANGUAGE") {
+    return { ...state, language: action.payload };
+  }
   if (action.type === "SET_ALL_PRODUCTS") {
     const allPrice = action.payload.map((item) => {
       return item.price;

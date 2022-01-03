@@ -8,7 +8,7 @@ const RelatedProducts = ({ relatedProducts, global }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper background={global.background_color}>
       <h1 className='section-title'>{global.related_products}</h1>
       <div className='related-products-container'>
         {relatedProducts.map((product) => {
@@ -39,7 +39,7 @@ const RelatedProducts = ({ relatedProducts, global }) => {
 };
 
 const Wrapper = styled.div`
-  background: #fedc97;
+  background: ${(props) => props.background};
   padding-top: 2rem;
   .section-title {
     margin-bottom: 2rem;

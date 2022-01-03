@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAppContext } from "../Context/Context";
 
-const Navbar = ({ data }) => {
+const Navbar = ({ data, global }) => {
   const { openCart, totalItems, language, changeLanguage } = useAppContext();
+  console.log(global.background_color);
 
   return (
-    <Wrapper>
+    <Wrapper background={global.background_color}>
       <nav className='nav-container'>
         <div className='header'>
           <h2 className='nav-title'>{data.title}</h2>
@@ -58,7 +59,7 @@ const Navbar = ({ data }) => {
 const Wrapper = styled.nav`
   .nav-container {
     height: 4rem;
-    background: #fedc97;
+    background: ${(props) => props.background};
     display: flex;
     align-items: center;
     justify-content: space-between;

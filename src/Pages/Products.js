@@ -10,7 +10,7 @@ const Products = ({ data }) => {
   console.log(data);
 
   return (
-    <Wrapper>
+    <Wrapper background={data.background_color}>
       <div className='section-container'>
         <div className='filters'>
           <Filters global={data} />
@@ -30,7 +30,7 @@ const Products = ({ data }) => {
 };
 
 const Wrapper = styled.section`
-  background: #fedc97;
+  background: ${(props) => props.background};
   padding-top: 2rem;
   padding-bottom: 4rem;
   min-height: calc(100vh - 4rem);

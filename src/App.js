@@ -134,7 +134,7 @@ function App() {
         </button>
         <button onClick={() => changeLanguage("en-us")}>Choose english</button> */}
         <Router>
-          <Navbar data={pageInfo[0]} />
+          <Navbar data={pageInfo[0]} global={global} />
           {pageInfo.length > 3 && <Cart data={pageInfo[3]} />}
 
           <Routes>
@@ -143,7 +143,11 @@ function App() {
                 exact
                 path='/'
                 element={
-                  <Homepage data={pageInfo[1]} featuredProducts={pageInfo[2]} />
+                  <Homepage
+                    data={pageInfo[1]}
+                    featuredProducts={pageInfo[2]}
+                    global={global}
+                  />
                 }
               ></Route>
             )}

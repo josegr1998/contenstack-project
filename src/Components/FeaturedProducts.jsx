@@ -10,7 +10,7 @@ const Stack = Contentstack.Stack({
   environment: "production",
 });
 
-const FeaturedProducts = ({ featuredProducts }) => {
+const FeaturedProducts = ({ featuredProducts, global }) => {
   const [products, setProducts] = useState([]);
   const { language } = useAppContext();
 
@@ -43,7 +43,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
   // console.log("im the featured products", featuredProducts);
   if (products.length > 0) {
     return (
-      <Wrapper>
+      <Wrapper background={global.background_color}>
         <div className='section-container'>
           <h1 className='title'>{featuredProducts.title}</h1>
           <div className='products-container'>
@@ -81,7 +81,7 @@ const FeaturedProducts = ({ featuredProducts }) => {
 };
 
 const Wrapper = styled.section`
-  background: #fedc97;
+  background: ${(props) => props.background};
   padding-top: 2rem;
   padding-bottom: 2rem;
 

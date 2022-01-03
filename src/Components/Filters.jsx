@@ -48,7 +48,7 @@ const Filters = ({ global }) => {
             className='search-bar'
             name='search'
             onChange={handleChange}
-            placeholder='Search...'
+            placeholder={global.search}
           />
           <div className='price-filters'>
             <p className='price-filter'>{global.price}</p>

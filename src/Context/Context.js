@@ -19,6 +19,7 @@ export const AppContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const changeLanguage = (value) => {
+    console.log(value);
     dispatch({ type: "CHANGE_LANGUAGE", payload: value });
   };
 

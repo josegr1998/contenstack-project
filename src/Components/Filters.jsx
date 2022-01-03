@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useAppContext } from "../Context/Context";
 
-const Filters = () => {
+const Filters = ({ global }) => {
+  console.log(global);
   const {
     searchProducts,
     setPrice,
@@ -40,7 +41,7 @@ const Filters = () => {
   return (
     <Wrapper>
       <div className='filter-container'>
-        <h2>Search your favorite products</h2>
+        <h2>{global.search_your_favorite_products}</h2>
         <form className='filters'>
           <input
             type='text'
@@ -50,7 +51,7 @@ const Filters = () => {
             placeholder='Search...'
           />
           <div className='price-filters'>
-            <p className='price-filter'>Price</p>
+            <p className='price-filter'>{global.price}</p>
             <div className='price-inputs-container'>
               <input
                 type='text'
@@ -69,21 +70,21 @@ const Filters = () => {
             </div>
           </div>
           <div className='category-container'>
-            <h2>Category</h2>
+            <h2>{global.category}</h2>
             <select
               name='category'
               id=''
               onChange={handleChange}
               value={selectedTag}
             >
-              <option value='all'>All</option>
-              <option value='table'>Table</option>
-              <option value='couch'>Couch</option>
-              <option value='chair'>Chair</option>
+              <option value='all'>{global.all}</option>
+              <option value='table'>{global.table}</option>
+              <option value='couch'>{global.couch}</option>
+              <option value='chair'>{global.chair}</option>
             </select>
           </div>
           <div className='free-shiping-container'>
-            <p className='price-filter'>Free Shipping</p>
+            <p className='price-filter'>{global.free_shipping}</p>
             <input
               type='checkbox'
               name='free-shiping'

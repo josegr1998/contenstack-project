@@ -30,18 +30,20 @@ const Cart = ({ data }) => {
             {cart.map((item) => {
               return (
                 <>
-                  <CartItem product={item} />
+                  <CartItem product={item} data={data} />
                 </>
               );
             })}
-            <h2 className='total'>Total to pay ${totalAmount}</h2>
+            <h2 className='total'>
+              {data.pay_total} ${totalAmount}
+            </h2>
             <button className='btn'>Checkout</button>
           </>
         ) : (
           <div className='empty-container'>
-            <h2>Your cart is empty</h2>
+            <h2>{data.empty_message}</h2>
             <Link to={"/products"} className='btn' onClick={closeCart}>
-              Fill it
+              {data.fill_cart}
             </Link>
           </div>
         )}

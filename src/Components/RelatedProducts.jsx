@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const RelatedProducts = ({ relatedProducts }) => {
+const RelatedProducts = ({ relatedProducts, global }) => {
   const moveTop = () => {
     window.scrollTo(0, 0);
   };
 
   return (
     <Wrapper>
-      <h1 className='section-title'>Related Products</h1>
+      <h1 className='section-title'>{global.related_products}</h1>
       <div className='related-products-container'>
         {relatedProducts.map((product) => {
           return (

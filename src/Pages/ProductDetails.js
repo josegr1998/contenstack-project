@@ -7,10 +7,12 @@ import RelatedProducts from "../Components/RelatedProducts";
 import Stack from "../Client/Client";
 import { useAppContext } from "../Context/Context";
 
-const ProductDetails = () => {
+const ProductDetails = ({ data }) => {
   const [product, setProduct] = useState("");
   const [relatedProducts, setRelatedProducts] = useState([]);
   const { addToCart, openCart, language } = useAppContext();
+
+  console.log(data);
 
   const params = useParams();
   const id = params.id;
@@ -61,9 +63,11 @@ const ProductDetails = () => {
             ></p>
           </div>
           <div className='aditional-info'>
-            <p>Price: ${product.price}</p>
+            <p>
+              {data.price}: ${product.price}
+            </p>
             <p className='free-shipping'>
-              Free Shipping:{" "}
+              {data.free_shipping}:{" "}
               {product.free_shiping ? (
                 <AiOutlineCheck className='success' />
               ) : (
@@ -79,11 +83,11 @@ const ProductDetails = () => {
               openCart();
             }}
           >
-            Add to cart
+            {data.add_to_cart}
           </button>
         </div>
         <section className='related-products'>
-          <RelatedProducts relatedProducts={relatedProducts} />
+          <RelatedProducts relatedProducts={relatedProducts} global={data} />
         </section>
       </Wrapper>
     );

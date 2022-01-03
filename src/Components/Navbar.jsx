@@ -5,7 +5,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useAppContext } from "../Context/Context";
 
 const Navbar = ({ data }) => {
-  const { openCart, totalItems } = useAppContext();
+  const { openCart, totalItems, language, changeLanguage } = useAppContext();
+
   return (
     <Wrapper>
       <nav className='nav-container'>
@@ -14,6 +15,17 @@ const Navbar = ({ data }) => {
           <div className='cart-icon-container'>
             <AiOutlineShoppingCart className='cart-icon' onClick={openCart} />
             <p>{totalItems}</p>
+          </div>
+          <div className='language-container'>
+            <select
+              name='language'
+              id=''
+              value={language}
+              onChange={(e) => changeLanguage(e.target.value)}
+            >
+              <option value='en-us'>English</option>
+              <option value='es-ar'>Spanish</option>
+            </select>
           </div>
         </div>
 

@@ -68,3 +68,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+--FIX SOME ENGLISH TEXT IN THE CART WHILE THE PAGE IS IN SPANISH
+--FIX BUG WHERE THE FOOTER DOENST SHOW IN SPANISH

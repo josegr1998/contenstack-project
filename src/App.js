@@ -14,6 +14,7 @@ import Footer from "./Components/Footer";
 function App() {
   const Query = Stack.ContentType("homepage").Query();
   const [data, setData] = useState([]);
+  const [global, setGlobal] = useState("");
   const [pageInfo, setPageInfo] = useState([]);
   const { setAllProducts, changeLanguage, language } = useAppContext();
 
@@ -24,6 +25,7 @@ function App() {
         .find()
         .then(function success(result) {
           setData(result[0][0].homepage_block);
+          setGlobal(result[0][0].global_field);
         });
     }
     if (language === "es-ar") {
@@ -33,6 +35,7 @@ function App() {
         .then((res) => {
           console.log(res);
           setData(res[0][0].homepage_block);
+          setGlobal(res[0][0].global_field);
         });
     }
   }, [language]);
@@ -101,7 +104,7 @@ function App() {
     }
   }, [data]);
 
-  console.log(data);
+  console.log("im global", global);
 
   useEffect(() => {
     const Query = Stack.ContentType("ui_product").Query();
@@ -117,11 +120,11 @@ function App() {
 
   if (
     (pageInfo.length > 4 && language === "en-us") ||
-    (pageInfo.length > 2 && language === "es-ar")
+    (pageInfo.length > 4 && language === "es-ar")
   ) {
     return (
       <div>
-        <h1>im the app</h1>
+        {/* <h1>im the app</h1>
         <button
           onClick={() => {
             changeLanguage("es-ar");
@@ -129,7 +132,7 @@ function App() {
         >
           Choose spanish
         </button>
-        <button onClick={() => changeLanguage("en-us")}>Choose english</button>
+        <button onClick={() => changeLanguage("en-us")}>Choose english</button> */}
         <Router>
           <Navbar data={pageInfo[0]} />
           {pageInfo.length > 3 && <Cart data={pageInfo[3]} />}
@@ -144,11 +147,15 @@ function App() {
                 }
               ></Route>
             )}
-            <Route path={"/products"} exact element={<Products />}></Route>
+            <Route
+              path={"/products"}
+              exact
+              element={<Products data={global} />}
+            ></Route>
             <Route
               path={"/products/:id"}
               exact
-              element={<ProductDetails />}
+              element={<ProductDetails data={global} />}
             ></Route>
             <Route path='/about' exact element={<About />}></Route>
           </Routes>

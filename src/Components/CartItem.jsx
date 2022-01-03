@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import { useAppContext } from "../Context/Context";
 
-const CartItem = ({ product }) => {
+const CartItem = ({ product, data }) => {
   const { deleteCartItem, toggleAmount } = useAppContext();
+  console.log(data);
 
   return (
     <Wrapper>
@@ -32,7 +33,7 @@ const CartItem = ({ product }) => {
         className='delete-btn'
         onClick={() => deleteCartItem(product.uid)}
       >
-        Delete
+        {data.delete_field}
       </button>
     </Wrapper>
   );

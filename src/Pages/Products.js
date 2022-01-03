@@ -5,14 +5,15 @@ import SingleProduct from "../Components/SingleProduct";
 import { useAppContext } from "../Context/Context";
 import Stack from "../Client/Client";
 
-const Products = () => {
+const Products = ({ data }) => {
   const { filteredProducts } = useAppContext();
+  console.log(data);
 
   return (
     <Wrapper>
       <div className='section-container'>
         <div className='filters'>
-          <Filters />
+          <Filters global={data} />
         </div>
         <div className='products-container'>
           {filteredProducts.length > 0 ? (
